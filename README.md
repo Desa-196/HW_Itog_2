@@ -187,7 +187,7 @@ CREATE TABLE `cats` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` INT,
-  `anymal_classes_id` int NOT NULL DEFAULT '1',
+  `anymal_types_id` int NOT NULL DEFAULT '1',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
@@ -279,8 +279,19 @@ INSERT INTO `horses` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALU
 (5, 'Тигрица', '2021-02-12', 8, 4);
 ```
 
-11. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
+***11***. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
 питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+
+```sql
+create table horses_and_donkeys as
+select 
+	ROW_NUMBER() over() as id, 
+    horses_and_donkeys.* from(
+		select name, Birthday, Color, anymal_types_id from horses
+		union
+		select name, Birthday, Color, anymal_types_id from donkeys
+	) as horses_and_donkeys
+```
 11.Создать новую таблицу “молодые животные” в которую попадут все
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
 до месяца подсчитать возраст животных в новой таблице
