@@ -299,16 +299,45 @@ select
 		select name, Birthday, Color, anymal_types_id from donkeys
 	) as horses_and_donkeys
 ```
-11.Создать новую таблицу “молодые животные” в которую попадут все
+***12***.Создать новую таблицу “молодые животные” в которую попадут все
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
 до месяца подсчитать возраст животных в новой таблице
-12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
+
+```sql
+CREATE TABLE young_animals AS
+select 
+	-- Нумеруем все строки
+	ROW_NUMBER() over() as id, 
+    young_animals.* ,
+    CONCAT('Лет: ', TIMESTAMPDIFF(YEAR, Birthday, CURDATE()), ' Месяцев: ', TIMESTAMPDIFF(MONTH, Birthday, CURDATE())%12) as age
+    FROM(
+		select name, Birthday, Color, anymal_types_id from horses
+		UNION
+		select name, Birthday, Color, anymal_types_id from donkeys
+        UNION
+        select name, Birthday, Color, anymal_types_id from dogs
+		UNION
+		select name, Birthday, Color, anymal_types_id from cats
+        UNION
+		select name, Birthday, Color, anymal_types_id from hamsters
+	) as young_animals
+WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(curdate(), INTERVAL -1 YEAR)
+```
+
+13. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
-13.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
-14. Написать программу, имитирующую работу реестра домашних животных.
+
+14.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
+
+15. Написать программу, имитирующую работу реестра домашних животных.
 В программе должен быть реализован следующий функционал:
-14.1 Завести новое животное
-14.2 определять животное в правильный класс
-14.3 увидеть список команд, которое выполняет животное
-14.4 обучить животное новым командам
-14.5 Реализовать навигацию по меню
+
+15.1 Завести новое животное
+
+15.2 определять животное в правильный класс
+
+15.3 увидеть список команд, которое выполняет животное
+
+15.4 обучить животное новым командам
+
+15.5 Реализовать навигацию по меню
