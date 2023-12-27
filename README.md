@@ -305,22 +305,22 @@ select
 
 ```sql
 CREATE TABLE young_animals AS
-select 
+select
 	-- Нумеруем все строки
 	ROW_NUMBER() over() as id, 
-    young_animals.* ,
-    CONCAT('Лет: ', TIMESTAMPDIFF(YEAR, Birthday, CURDATE()), ' Месяцев: ', TIMESTAMPDIFF(MONTH, Birthday, CURDATE())%12) as age
-    FROM(
-		select name, Birthday, Color, anymal_types_id from horses
-		UNION
+    	young_animals.* ,
+    	CONCAT('Лет: ', TIMESTAMPDIFF(YEAR, Birthday, CURDATE()), ' Месяцев: ', TIMESTAMPDIFF(MONTH, Birthday, CURDATE())%12) as age
+FROM(
+	select name, Birthday, Color, anymal_types_id from horses
+	UNION
 		select name, Birthday, Color, anymal_types_id from donkeys
         UNION
-        select name, Birthday, Color, anymal_types_id from dogs
-		UNION
+        	select name, Birthday, Color, anymal_types_id from dogs
+	UNION
 		select name, Birthday, Color, anymal_types_id from cats
         UNION
 		select name, Birthday, Color, anymal_types_id from hamsters
-	) as young_animals
+) as young_animals
 WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(curdate(), INTERVAL -1 YEAR)
 ```
 
