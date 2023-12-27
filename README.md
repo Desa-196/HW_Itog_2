@@ -164,7 +164,7 @@ CREATE TABLE `camels` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` INT,
   `anymal_types_id` int NOT NULL DEFAULT '5',
    PRIMARY KEY(id),
    FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
@@ -180,10 +180,10 @@ INSERT INTO `camels` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALU
 >Создаем таблицу Кошки и наполняем её
 ```sql
 CREATE TABLE `cats` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` INT,
   `anymal_classes_id` int NOT NULL DEFAULT '1',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
@@ -200,10 +200,10 @@ INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `anymal_classes_id`) VALU
 >Создаем таблицу Собаки и наполняем её
 ```sql
 CREATE TABLE `dogs` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` INT,
   `anymal_types_id` int NOT NULL DEFAULT '2',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
@@ -220,10 +220,10 @@ INSERT INTO `dogs` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
 >Создаем таблицу Ослы и наполняем её
 ```sql
 CREATE TABLE `donkeys` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` INT,
   `anymal_types_id` int NOT NULL DEFAULT '6',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
@@ -239,10 +239,10 @@ INSERT INTO `donkeys` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VAL
 >Создаем таблицу Хомяки и наполняем её
 ```sql
 CREATE TABLE `hamsters` (
-  `id` int NOT NULL,
+  `id` int NOT NULL  AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` int,
   `anymal_types_id` int NOT NULL DEFAULT '3',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
@@ -259,10 +259,10 @@ INSERT INTO `hamsters` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VA
 >Создаем таблицу Лошади и наполняем её
 ```sql
 CREATE TABLE `horses` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Color` int NOT NULL,
+  `Color` int,
   `anymal_types_id` int NOT NULL DEFAULT '4',
 PRIMARY KEY(id),
 FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
