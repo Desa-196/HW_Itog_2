@@ -282,6 +282,13 @@ INSERT INTO `horses` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALU
 ***11***. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
 питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
 
+>Удаляем всех верблюдов
+```sql
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM camels;
+```
+
+>Объединяем таблицы с лошадьми и ослами в одтельной таблице
 ```sql
 create table horses_and_donkeys as
 select 
