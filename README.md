@@ -327,6 +327,27 @@ WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(cur
 13. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
 
+```sql
+CREATE TABLE anymals as
+SELECT 
+	-- Нумеруем все строки
+	ROW_NUMBER() over() as id, 
+    	animals.* ,
+    	anymals_types.name as type_name
+FROM(
+	select name, Birthday, Color, anymal_types_id from horses
+	UNION
+	select name, Birthday, Color, anymal_types_id from donkeys
+        UNION
+        select name, Birthday, Color, anymal_types_id from dogs
+	UNION
+	select name, Birthday, Color, anymal_types_id from cats
+        UNION
+	select name, Birthday, Color, anymal_types_id from hamsters
+) as animals
+LEFT JOIN anymals_types on animals.anymal_types_id = anymals_types.id
+```
+
 14.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 
 15. Написать программу, имитирующую работу реестра домашних животных.
