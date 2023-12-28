@@ -17,5 +17,13 @@ namespace AnymalsPROG.Model
         {
             commands.Add(command);
         }
+        public Animals(int id, string name, DateTime birthday, string color, List<Command> command)
+        {
+            this.id = id;
+            this.name = name;  
+            this.birthday = birthday;
+            this.color = color;
+            this.commands = command;
+        }
     }
 }
