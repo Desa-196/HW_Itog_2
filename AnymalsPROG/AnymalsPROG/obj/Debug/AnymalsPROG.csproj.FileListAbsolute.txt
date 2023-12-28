@@ -1,0 +1,15 @@
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.csproj.AssemblyReference.cache
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\View\MainWindow.g.cs
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\App.g.cs
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG_MarkupCompile.cache
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG_MarkupCompile.lref
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\bin\Debug\AnymalsPROG.exe.config
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\bin\Debug\AnymalsPROG.exe
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\bin\Debug\AnymalsPROG.pdb
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\View\MainWindow.baml
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.g.resources
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.Properties.Resources.resources
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.csproj.GenerateResource.cache
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.csproj.CoreCompileInputs.cache
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.exe
+C:\Users\ponomarev\Documents\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.pdb
