@@ -82,27 +82,27 @@ create database human_friends
 
 >Создаем таблицу класса животных и наполняем её
 ```sql
-CREATE TABLE `anymal_classes` (
+CREATE TABLE `animal_classes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
 PRIMARY KEY(id)
 );
 
-INSERT INTO `anymal_classes` (`id`, `name`) VALUES
+INSERT INTO `animal_classes` (`id`, `name`) VALUES
 (1, 'Домашние животные'),
 (2, 'Вьючные животные');
 ```
 >Создаем таблицу с типами домашних животных и наполняем её
 ```sql
-CREATE TABLE `anymals_types` (
+CREATE TABLE `animals_types` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `anymal_classes_id` int NOT NULL,
+  `animal_classes_id` int NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY (anymal_classes_id) REFERENCES anymal_classes (id) on DELETE CASCADE on UPDATE CASCADE
+   FOREIGN KEY (animal_classes_id) REFERENCES animal_classes (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `anymals_types` (`id`, `name`, `anymal_classes_id`) VALUES
+INSERT INTO `animals_types` (`id`, `name`, `animal_classes_id`) VALUES
 (1, 'Кошка', 1),
 (2, 'Собака', 1),
 (3, 'Хомяк', 1),
@@ -135,8 +135,8 @@ INSERT INTO `colors` (`id`, `color`) VALUES
 ```sql
 CREATE TABLE `animals_commands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `anymal_id` int NOT NULL,
-  `anymal_type` int NOT NULL,
+  `animal_id` int NOT NULL,
+  `animal_type` int NOT NULL,
   `command_id` int NOT NULL,
    PRIMARY KEY(id)
 )
@@ -151,13 +151,13 @@ INSERT INTO `commands` (`id`, `name`) VALUES
 (7, 'Место'),
 (8, 'Дай лапу');
 ```
->Создаем таблицу для связи многое ко многим животного и команды, связывать будем по полям anymal_id и anymal_type
->так как anymal_id может совпадать у разных животных
+>Создаем таблицу для связи многое ко многим животного и команды, связывать будем по полям animal_id и animal_type
+>так как animal_id может совпадать у разных животных
 ```sql
-CREATE TABLE `anymals_to_commands` (
+CREATE TABLE `animals_to_commands` (
  `id` INT NOT NULL AUTO_INCREMENT ,
- `anymal_id` INT NOT NULL,
- `anymal_type` INT NOT NULL,
+ `animal_id` INT NOT NULL,
+ `animal_type` INT NOT NULL,
  `command_id` INT NOT NULL ,
 PRIMARY KEY (`id`));
 ```
@@ -168,12 +168,12 @@ CREATE TABLE `camels` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` INT,
-  `anymal_types_id` int NOT NULL DEFAULT '5',
+  `animal_types_id` int NOT NULL DEFAULT '5',
    PRIMARY KEY(id),
-   FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+   FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `camels` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
+INSERT INTO `camels` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Агата', '1998-01-08', 9, 5),
 (2, 'Чайна', '2001-11-22', 10, 5),
 (3, 'Мария', '2012-12-13', 10, 5),
@@ -187,12 +187,12 @@ CREATE TABLE `cats` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` INT,
-  `anymal_types_id` int NOT NULL DEFAULT '1',
+  `animal_types_id` int NOT NULL DEFAULT '1',
 PRIMARY KEY(id),
-FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `anymal_classes_id`) VALUES
+INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_classes_id`) VALUES
 (1, 'Барсик', '2018-12-12', 1, 1),
 (2, 'Ириска', '2015-08-12', 2, 1),
 (3, 'Муська', '2011-08-14', 4, 1),
@@ -207,12 +207,12 @@ CREATE TABLE `dogs` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` INT,
-  `anymal_types_id` int NOT NULL DEFAULT '2',
+  `animal_types_id` int NOT NULL DEFAULT '2',
 PRIMARY KEY(id),
-FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 )
 
-INSERT INTO `dogs` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
+INSERT INTO `dogs` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Бобик', '2018-12-12', 1, 2),
 (2, 'Майк', '2015-05-08', 2, 2),
 (3, 'Локи', '2019-08-14', 4, 2),
@@ -227,12 +227,12 @@ CREATE TABLE `donkeys` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` INT,
-  `anymal_types_id` int NOT NULL DEFAULT '6',
+  `animal_types_id` int NOT NULL DEFAULT '6',
 PRIMARY KEY(id),
-FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `donkeys` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
+INSERT INTO `donkeys` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Иа', '2015-03-15', 2, 6),
 (2, 'Ослик', '2020-05-17', 6, 6),
 (3, 'Чита', '2011-07-11', 2, 6),
@@ -246,12 +246,12 @@ CREATE TABLE `hamsters` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` int,
-  `anymal_types_id` int NOT NULL DEFAULT '3',
+  `animal_types_id` int NOT NULL DEFAULT '3',
 PRIMARY KEY(id),
-FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 ) ;
 
-INSERT INTO `hamsters` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
+INSERT INTO `hamsters` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Хомик', '2022-12-18', 5, 3),
 (2, 'Ириска', '2020-08-14', 5, 3),
 (3, 'Бубус', '2021-11-16', 2, 3),
@@ -266,12 +266,12 @@ CREATE TABLE `horses` (
   `name` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Color` int,
-  `anymal_types_id` int NOT NULL DEFAULT '4',
+  `animal_types_id` int NOT NULL DEFAULT '4',
 PRIMARY KEY(id),
-FOREIGN KEY (anymal_types_id) REFERENCES anymals_types (id) on DELETE CASCADE on UPDATE CASCADE
+FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 ) ;
 
-INSERT INTO `horses` (`id`, `name`, `Birthday`, `Color`, `anymal_types_id`) VALUES
+INSERT INTO `horses` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Ярость', '2000-07-18', 5, 4),
 (2, 'Рысак', '2018-01-18', 6, 4),
 (3, 'Лиса', '2010-10-06', 2, 4),
@@ -294,9 +294,9 @@ create table horses_and_donkeys as
 select 
 	ROW_NUMBER() over() as id, 
     horses_and_donkeys.* from(
-		select name, Birthday, Color, anymal_types_id from horses
+		select name, Birthday, Color, animal_types_id from horses
 		union
-		select name, Birthday, Color, anymal_types_id from donkeys
+		select name, Birthday, Color, animal_types_id from donkeys
 	) as horses_and_donkeys
 ```
 ***12***.Создать новую таблицу “молодые животные” в которую попадут все
@@ -311,15 +311,15 @@ select
     	young_animals.* ,
     	CONCAT('Лет: ', TIMESTAMPDIFF(YEAR, Birthday, CURDATE()), ' Месяцев: ', TIMESTAMPDIFF(MONTH, Birthday, CURDATE())%12) as age
 FROM(
-	select name, Birthday, Color, anymal_types_id from horses
+	select name, Birthday, Color, animal_types_id from horses
 	UNION
-		select name, Birthday, Color, anymal_types_id from donkeys
+		select name, Birthday, Color, animal_types_id from donkeys
         UNION
-        	select name, Birthday, Color, anymal_types_id from dogs
+        	select name, Birthday, Color, animal_types_id from dogs
 	UNION
-		select name, Birthday, Color, anymal_types_id from cats
+		select name, Birthday, Color, animal_types_id from cats
         UNION
-		select name, Birthday, Color, anymal_types_id from hamsters
+		select name, Birthday, Color, animal_types_id from hamsters
 ) as young_animals
 WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(curdate(), INTERVAL -1 YEAR)
 ```
@@ -328,24 +328,24 @@ WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(cur
 прошлую принадлежность к старым таблицам.
 
 ```sql
-CREATE TABLE anymals as
+CREATE TABLE animals as
 SELECT 
 	-- Нумеруем все строки
 	ROW_NUMBER() over() as id, 
     	animals.* ,
-    	anymals_types.name as type_name
+    	animals_types.name as type_name
 FROM(
-	select name, Birthday, Color, anymal_types_id from horses
+	select name, Birthday, Color, animal_types_id from horses
 	UNION
-	select name, Birthday, Color, anymal_types_id from donkeys
+	select name, Birthday, Color, animal_types_id from donkeys
         UNION
-        select name, Birthday, Color, anymal_types_id from dogs
+        select name, Birthday, Color, animal_types_id from dogs
 	UNION
-	select name, Birthday, Color, anymal_types_id from cats
+	select name, Birthday, Color, animal_types_id from cats
         UNION
-	select name, Birthday, Color, anymal_types_id from hamsters
+	select name, Birthday, Color, animal_types_id from hamsters
 ) as animals
-LEFT JOIN anymals_types on animals.anymal_types_id = anymals_types.id
+LEFT JOIN animals_types on animals.animal_types_id = animals_types.id
 ```
 
 14.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
