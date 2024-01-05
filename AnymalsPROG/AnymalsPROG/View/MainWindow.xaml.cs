@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnymalsPROG.DB;
+using AnymalsPROG.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace AnymalsPROG.View
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

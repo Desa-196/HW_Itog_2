@@ -8,6 +8,6 @@ namespace AnymalsPROG.Model
 {
     internal class Donkey : PackAnimal
     {
-        Donkey(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
+        public Donkey(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
     }
 }
