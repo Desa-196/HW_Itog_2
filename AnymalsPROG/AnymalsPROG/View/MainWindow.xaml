@@ -11,14 +11,13 @@
         <dc:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding AnimalsList}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <DataGrid AutoGenerateColumns="false" ItemsSource="{Binding AnimalsList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Path=id}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=name}"/>
+                <DataGridTextColumn Header="Цвет" Binding="{Binding Path=color}"/>
+                <DataGridTextColumn Header="Дата рождания" Binding="{Binding Path=birthday}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
