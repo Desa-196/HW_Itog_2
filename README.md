@@ -350,7 +350,7 @@ LEFT JOIN animals_types on animals.animal_types_id = animals_types.id
 
 14.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 
-[Файлы с классами](https://github.com/Desa-196/HW_Itog_2/tree/wpfPORG/AnymalsPROG/AnymalsPROG/Model)
+[Файлы с классами](https://github.com/Desa-196/HW_Itog_2/tree/master/AnymalsPROG/AnymalsPROG/Model)
 
 15. Написать программу, имитирующую работу реестра домашних животных.
 В программе должен быть реализован следующий функционал:
