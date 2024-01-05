@@ -8,6 +8,6 @@ namespace AnymalsPROG.Model
 {
     internal class PetAnimal:Animals
     {
-        PetAnimal(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
+        public PetAnimal(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
     }
 }

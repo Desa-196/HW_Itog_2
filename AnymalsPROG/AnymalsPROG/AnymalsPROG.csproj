@@ -64,7 +64,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Animals.cs" />
+    <Compile Include="Model\Camel.cs" />
+    <Compile Include="Model\Cat.cs" />
     <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Dog.cs" />
+    <Compile Include="Model\Donkey.cs" />
+    <Compile Include="Model\Hamster.cs" />
+    <Compile Include="Model\Horse.cs" />
     <Compile Include="Model\PackAnimal.cs" />
     <Compile Include="Model\PetAnimal.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
