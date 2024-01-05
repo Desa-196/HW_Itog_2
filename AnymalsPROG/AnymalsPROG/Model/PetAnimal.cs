@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnymalsPROG.Model
 {
-    internal class PetAnimal:Animals
+    internal abstract class PetAnimal : Animals
     {
         public PetAnimal(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
     }

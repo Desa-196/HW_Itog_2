@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AnymalsPROG.Model
 {
-    internal class PackAnimal:Animals
+    internal abstract class PackAnimal : Animals
     {
         public PackAnimal(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
-}
+    }
 }
