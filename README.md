@@ -133,13 +133,11 @@ INSERT INTO `colors` (`id`, `color`) VALUES
 
 >Создаем таблицу с командами и наполняем её
 ```sql
-CREATE TABLE `animals_commands` (
+CREATE TABLE `commands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `animal_id` int NOT NULL,
-  `animal_type` int NOT NULL,
-  `command_id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
    PRIMARY KEY(id)
-)
+);
 
 INSERT INTO `commands` (`id`, `name`) VALUES
 (1, 'Лежать'),
@@ -192,7 +190,7 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_classes_id`) VALUES
+INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Барсик', '2018-12-12', 1, 1),
 (2, 'Ириска', '2015-08-12', 2, 1),
 (3, 'Муська', '2011-08-14', 4, 1),
@@ -313,18 +311,18 @@ select
 FROM(
 	select name, Birthday, Color, animal_types_id from horses
 	UNION
-		select name, Birthday, Color, animal_types_id from donkeys
+	select name, Birthday, Color, animal_types_id from donkeys
         UNION
-        	select name, Birthday, Color, animal_types_id from dogs
+        select name, Birthday, Color, animal_types_id from dogs
 	UNION
-		select name, Birthday, Color, animal_types_id from cats
+	select name, Birthday, Color, animal_types_id from cats
         UNION
-		select name, Birthday, Color, animal_types_id from hamsters
+	select name, Birthday, Color, animal_types_id from hamsters
 ) as young_animals
 WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(curdate(), INTERVAL -1 YEAR)
 ```
 
-13. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
+***13.*** Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
 
 ```sql
@@ -348,12 +346,14 @@ FROM(
 LEFT JOIN animals_types on animals.animal_types_id = animals_types.id
 ```
 
-14.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
+***14.*** Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 
 [Файлы с классами](https://github.com/Desa-196/HW_Itog_2/tree/master/AnymalsPROG/AnymalsPROG/Model)
 
-15. Написать программу, имитирующую работу реестра домашних животных.
+***15.*** Написать программу, имитирующую работу реестра домашних животных.
 В программе должен быть реализован следующий функционал:
+
+!["screenshot programm"](img/Screenshot_3.jpg "Скриншот Программы")
 
 15.1 Завести новое животное
 
