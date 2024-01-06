@@ -34,7 +34,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True" Header="Имя" Binding="{Binding Path=name}"/>
                 <DataGridTextColumn IsReadOnly="True" Header="Цвет" Binding="{Binding Path=color}"/>
-                <DataGridTextColumn IsReadOnly="True" Header="Дата рождания" Binding="{Binding Path=birthday}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Дата рождания" Binding="{Binding Path=birthday, StringFormat=dd.MM.yyyy, ConverterCulture=en-GB}"/>
                 <DataGridTemplateColumn Header="Тип">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
