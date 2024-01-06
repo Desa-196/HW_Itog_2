@@ -1,5 +1,6 @@
 ﻿using AnymalsPROG.DB;
 using AnymalsPROG.Model;
+using AnymalsPROG.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,24 @@ namespace AnymalsPROG.ViewModel
             {
                 _animalsList = value;
                 OnPropertyChanged("AnimalsList");
+            }
+        }
+
+        public MyCommand Edit
+        {
+            get
+            {
+                return new MyCommand((obj) =>
+                {
+
+                    var newWindow = new Edit();
+                    newWindow.ShowDialog();
+                    newWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                },
+                (obj) =>
+                {
+                    return true;
+                });
             }
         }
 

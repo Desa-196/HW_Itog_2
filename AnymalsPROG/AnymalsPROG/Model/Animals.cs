@@ -13,6 +13,7 @@ namespace AnymalsPROG.Model
         public DateTime birthday { get; set; }
         public string color {  get; set; }
         public List<Command> commands { get; set; }
+        public string img { get; set; }
         public void LernCommand(Command command) 
         {
             commands.Add(command);

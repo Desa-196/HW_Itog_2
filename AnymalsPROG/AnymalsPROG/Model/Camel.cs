@@ -8,6 +8,9 @@ namespace AnymalsPROG.Model
 {
     internal class Camel : PackAnimal
     {
-        public Camel(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
+        public Camel(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command)
+        {
+            img = "/Img/camel.png";
+        }
     }
 }

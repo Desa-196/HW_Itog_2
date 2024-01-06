@@ -61,3 +61,5 @@ C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.csproj.CopyComplete
 C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.exe
 C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\AnymalsPROG.pdb
 C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\View\Edit.g.cs
+C:\HW_Itog_2\AnymalsPROG\AnymalsPROG\obj\Debug\View\Edit.baml

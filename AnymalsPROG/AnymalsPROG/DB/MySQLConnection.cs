@@ -29,7 +29,7 @@ namespace AnymalsPROG.DB
                 connection.Open();
 
                 string sql =
-                    "select all_animals.id, all_animals.Birthday, all_animals.name, colors.color " +
+                    "select all_animals.id, all_animals.Birthday, all_animals.name, colors.color, all_animals.anymal_classes_id " +
                     "from("+
                         "select * from cats "+
                         "union " +
@@ -53,7 +53,8 @@ namespace AnymalsPROG.DB
                         while (reader.Read())
                         {
                             //AninalsList.Add(new Camel(reader["id"], reader["name"], reader["birthday"], reader["color"], null));
-                            AninalsList.Add(new Camel(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), null));
+                           
+                            AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["anymal_classes_id"]));
                         }
                     }
                 }

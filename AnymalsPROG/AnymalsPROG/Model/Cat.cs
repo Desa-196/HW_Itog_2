@@ -8,6 +8,9 @@ namespace AnymalsPROG.Model
 {
     internal class Cat:PetAnimal
     {
-        public Cat(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) { }
+        public Cat(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) 
+        {
+            img = "/Img/cat.png";
+        }
     }
 }
