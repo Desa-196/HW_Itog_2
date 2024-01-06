@@ -17,15 +17,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button Width="100" Margin="5">Обновить</Button>
+            <Button Width="100" Margin="5" >Обновить</Button>
             <Button Width="100" Margin="5">Добавить</Button>
             <Button Width="130" Margin="5">Удалить выделенные</Button>
         </StackPanel>
-        
+
         <DataGrid Grid.Row="1" AutoGenerateColumns="false" ItemsSource="{Binding AnimalsList}">
-            <DataGrid.InputBindings>
-                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding Edit}"/>
-            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Header="id" Binding="{Binding Path=id}"/>
                 <DataGridTemplateColumn Header="Тип">
@@ -38,6 +35,13 @@
                 <DataGridTextColumn IsReadOnly="True" Header="Имя" Binding="{Binding Path=name}"/>
                 <DataGridTextColumn IsReadOnly="True" Header="Цвет" Binding="{Binding Path=color}"/>
                 <DataGridTextColumn IsReadOnly="True" Header="Дата рождания" Binding="{Binding Path=birthday}"/>
+                <DataGridTemplateColumn Header="Тип">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="100" Command="{Binding DataContext.Edit,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Margin="5">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

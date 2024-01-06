@@ -28,23 +28,25 @@ namespace AnymalsPROG.DB
             {
                 connection.Open();
 
-                string sql =
-                    "select all_animals.id, all_animals.Birthday, all_animals.name, colors.color, all_animals.anymal_classes_id " +
-                    "from("+
-                        "select * from cats "+
-                        "union " +
-                        "select * from dogs " +
-                        "union " +
-                        "select * from donkeys " +
-                        "union " +
-                        "select * from camels " +
-                        "union " +
-                        "select * from hamsters " +
-                        "union  " +
-                        "select * from horses) as all_animals " +
-                    "left join colors on all_animals.color = colors.id " +
-                    "left join anymals_types on all_animals.anymal_classes_id = anymals_types.id " +
-                    "left join anymal_classes on anymals_types.anymal_classes_id = anymal_classes.id";
+                string sql = @"
+
+                    select all_animals.id, all_animals.Birthday, all_animals.name, colors.color, all_animals.animal_types_id
+                    from(
+                        select * from cats 
+                        union
+                        select * from dogs
+                        union
+                        select * from donkeys
+                        union
+                        select * from camels
+                        union
+                        select * from hamsters
+                        union
+                        select * from horses) as all_animals
+                    left join colors on all_animals.color = colors.id
+                    left join animals_types on all_animals.animal_types_id = animals_types.id
+                    left join animal_classes on animals_types.animal_classes_id = animal_classes.id;";
+
 
                 using (MySqlCommand command = new MySqlCommand(sql, connection))
                 {
@@ -54,7 +56,7 @@ namespace AnymalsPROG.DB
                         {
                             //AninalsList.Add(new Camel(reader["id"], reader["name"], reader["birthday"], reader["color"], null));
                            
-                            AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["anymal_classes_id"]));
+                            AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["animal_types_id"]));
                         }
                     }
                 }

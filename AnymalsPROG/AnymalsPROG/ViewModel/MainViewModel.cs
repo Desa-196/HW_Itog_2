@@ -49,7 +49,7 @@ namespace AnymalsPROG.ViewModel
         public MainViewModel()
         {
             IDBConnection dBConnection = new MySQLConnection();
-            dBConnection.setConnectionString("server=localhost;database=animals;uid=animals_user;password=p-Ze9ho8EC;");
+            dBConnection.setConnectionString("server=localhost;database=human_friends;uid=animals_user;password=p-Ze9ho8EC;");
             AnimalsList = dBConnection.getAllAnimals();
 
         }

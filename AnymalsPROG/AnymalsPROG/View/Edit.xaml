@@ -29,7 +29,7 @@
 
         <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ClassList}"/>
         <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TypeList}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
-        <CalendarDayButton Grid.Row="2" Grid.Column="1"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
+        <DatePicker Grid.Row="3" Grid.Column="1"/>
     </Grid>
 </Window>
