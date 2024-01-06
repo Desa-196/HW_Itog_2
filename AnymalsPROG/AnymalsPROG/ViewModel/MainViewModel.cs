@@ -28,14 +28,14 @@ namespace AnymalsPROG.ViewModel
             }
         }
 
-        public MyCommand Edit
+        public MyCommand Add
         {
             get
             {
                 return new MyCommand((obj) =>
                 {
 
-                    var newWindow = new Edit();
+                    var newWindow = new Add();
                     newWindow.ShowDialog();
                     newWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
                 },

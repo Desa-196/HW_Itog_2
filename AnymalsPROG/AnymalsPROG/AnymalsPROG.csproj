@@ -107,7 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\Edit.xaml">
+    <Page Include="View\Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,10 +133,11 @@
     <Compile Include="Model\Horse.cs" />
     <Compile Include="Model\PackAnimal.cs" />
     <Compile Include="Model\PetAnimal.cs" />
+    <Compile Include="ViewModel\AddViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MyCommand.cs" />
-    <Compile Include="View\Edit.xaml.cs">
-      <DependentUpon>Edit.xaml</DependentUpon>
+    <Compile Include="View\Add.xaml.cs">
+      <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

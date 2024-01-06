@@ -18,7 +18,7 @@
 
         <StackPanel Orientation="Horizontal">
             <Button Width="100" Margin="5" >Обновить</Button>
-            <Button Width="100" Margin="5">Добавить</Button>
+            <Button Width="100" Margin="5" Command="{Binding Add}">Добавить</Button>
             <Button Width="130" Margin="5">Удалить выделенные</Button>
         </StackPanel>
 

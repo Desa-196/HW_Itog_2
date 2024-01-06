@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace AnymalsPROG.View
 {
     /// <summary>
-    /// Логика взаимодействия для Edit.xaml
+    /// Логика взаимодействия для Add.xaml
     /// </summary>
-    public partial class Edit : Window
+    public partial class Add : Window
     {
-        public Edit()
+        public Add()
         {
             InitializeComponent();
         }
