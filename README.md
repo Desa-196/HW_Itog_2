@@ -311,13 +311,13 @@ select
 FROM(
 	select name, Birthday, Color, animal_types_id from horses
 	UNION
-		select name, Birthday, Color, animal_types_id from donkeys
+	select name, Birthday, Color, animal_types_id from donkeys
         UNION
-        	select name, Birthday, Color, animal_types_id from dogs
+        select name, Birthday, Color, animal_types_id from dogs
 	UNION
-		select name, Birthday, Color, animal_types_id from cats
+	select name, Birthday, Color, animal_types_id from cats
         UNION
-		select name, Birthday, Color, animal_types_id from hamsters
+	select name, Birthday, Color, animal_types_id from hamsters
 ) as young_animals
 WHERE Birthday > ADDDATE(curdate(), INTERVAL -3 YEAR) AND Birthday < ADDDATE(curdate(), INTERVAL -1 YEAR)
 ```
