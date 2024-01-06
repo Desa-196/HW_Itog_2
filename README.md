@@ -133,13 +133,11 @@ INSERT INTO `colors` (`id`, `color`) VALUES
 
 >Создаем таблицу с командами и наполняем её
 ```sql
-CREATE TABLE `animals_commands` (
+CREATE TABLE `commands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `animal_id` int NOT NULL,
-  `animal_type` int NOT NULL,
-  `command_id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
    PRIMARY KEY(id)
-)
+);
 
 INSERT INTO `commands` (`id`, `name`) VALUES
 (1, 'Лежать'),
@@ -192,7 +190,7 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_classes_id`) VALUES
+INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
 (1, 'Барсик', '2018-12-12', 1, 1),
 (2, 'Ириска', '2015-08-12', 2, 1),
 (3, 'Муська', '2011-08-14', 4, 1),
