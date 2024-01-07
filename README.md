@@ -88,9 +88,9 @@ CREATE TABLE `animal_classes` (
 PRIMARY KEY(id)
 );
 
-INSERT INTO `animal_classes` (`id`, `name`) VALUES
-(1, 'Домашние животные'),
-(2, 'Вьючные животные');
+INSERT INTO `animal_classes` (`name`) VALUES
+('Домашние животные'),
+('Вьючные животные');
 ```
 >Создаем таблицу с типами домашних животных и наполняем её
 ```sql
@@ -102,13 +102,13 @@ CREATE TABLE `animals_types` (
    FOREIGN KEY (animal_classes_id) REFERENCES animal_classes (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `animals_types` (`id`, `name`, `animal_classes_id`) VALUES
-(1, 'Кошка', 1),
-(2, 'Собака', 1),
-(3, 'Хомяк', 1),
-(4, 'Лошадь', 2),
-(5, 'Верблюд', 2),
-(6, 'Осёл', 2);
+INSERT INTO `animals_types` (`name`, `animal_classes_id`) VALUES
+('Кошка', 1),
+('Собака', 1),
+('Хомяк', 1),
+('Лошадь', 2),
+('Верблюд', 2),
+('Осёл', 2);
 ```
 >Создаем таблицу с цветами и наполняем её
 ```sql
@@ -118,17 +118,17 @@ CREATE TABLE `colors` (
 PRIMARY KEY (id)
 );
 
-INSERT INTO `colors` (`id`, `color`) VALUES
-(1, 'Белый'),
-(2, 'Серый'),
-(3, 'Черный'),
-(4, 'Белый с черными пятнами'),
-(5, 'Рыжий'),
-(6, 'Коричневый'),
-(7, 'Черный с белыми пятнами'),
-(8, 'Серый с белыми пятнами'),
-(9, 'Светло-жёлтый'),
-(10, 'Бурый');
+INSERT INTO `colors` (`color`) VALUES
+('Белый'),
+('Серый'),
+('Черный'),
+('Белый с черными пятнами'),
+('Рыжий'),
+('Коричневый'),
+('Черный с белыми пятнами'),
+('Серый с белыми пятнами'),
+('Светло-жёлтый'),
+('Бурый');
 ```
 
 >Создаем таблицу с командами и наполняем её
@@ -139,15 +139,15 @@ CREATE TABLE `commands` (
    PRIMARY KEY(id)
 );
 
-INSERT INTO `commands` (`id`, `name`) VALUES
-(1, 'Лежать'),
-(2, 'Сидеть'),
-(3, 'Голос'),
-(4, 'Вперед'),
-(5, 'Стоять'),
-(6, 'Ждать'),
-(7, 'Место'),
-(8, 'Дай лапу');
+INSERT INTO `commands` (`name`) VALUES
+('Лежать'),
+('Сидеть'),
+('Голос'),
+('Вперед'),
+('Стоять'),
+('Ждать'),
+('Место'),
+('Дай лапу');
 ```
 >Создаем таблицу для связи многое ко многим животного и команды, связывать будем по полям animal_id и animal_type
 >так как animal_id может совпадать у разных животных
@@ -171,12 +171,12 @@ CREATE TABLE `camels` (
    FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `camels` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Агата', '1998-01-08', 9, 5),
-(2, 'Чайна', '2001-11-22', 10, 5),
-(3, 'Мария', '2012-12-13', 10, 5),
-(4, 'Твист', '2020-02-21', 9, 5),
-(5, 'Ланцелот', '2018-03-13', 10, 5);
+INSERT INTO `camels` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Агата', '1998-01-08', 9, 5),
+('Чайна', '2001-11-22', 10, 5),
+('Мария', '2012-12-13', 10, 5),
+('Твист', '2020-02-21', 9, 5),
+('Ланцелот', '2018-03-13', 10, 5);
 ```
 >Создаем таблицу Кошки и наполняем её
 ```sql
@@ -190,12 +190,12 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `cats` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Барсик', '2018-12-12', 1, 1),
-(2, 'Ириска', '2015-08-12', 2, 1),
-(3, 'Муська', '2011-08-14', 4, 1),
-(4, 'Мотя', '2013-04-18', 7, 1),
-(5, 'Масяня', '2021-12-09', 8, 1);
+INSERT INTO `cats` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Барсик', '2018-12-12', 1, 1),
+('Ириска', '2015-08-12', 2, 1),
+('Муська', '2011-08-14', 4, 1),
+('Мотя', '2013-04-18', 7, 1),
+('Масяня', '2021-12-09', 8, 1);
 ```
 
 >Создаем таблицу Собаки и наполняем её
@@ -210,12 +210,12 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 )
 
-INSERT INTO `dogs` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Бобик', '2018-12-12', 1, 2),
-(2, 'Майк', '2015-05-08', 2, 2),
-(3, 'Локи', '2019-08-14', 4, 2),
-(4, 'Герда', '2023-04-28', 7, 2),
-(5, 'Лесси', '2022-10-16', 8, 2);
+INSERT INTO `dogs` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Бобик', '2018-12-12', 1, 2),
+('Майк', '2015-05-08', 2, 2),
+('Локи', '2019-08-14', 4, 2),
+('Герда', '2023-04-28', 7, 2),
+('Лесси', '2022-10-16', 8, 2);
 ```
 
 >Создаем таблицу Ослы и наполняем её
@@ -230,12 +230,12 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 );
 
-INSERT INTO `donkeys` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Иа', '2015-03-15', 2, 6),
-(2, 'Ослик', '2020-05-17', 6, 6),
-(3, 'Чита', '2011-07-11', 2, 6),
-(4, 'Элиос', '2013-05-19', 2, 6),
-(5, 'Лунтик', '2018-07-22', 2, 6);
+INSERT INTO `donkeys` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Иа', '2015-03-15', 2, 6),
+('Ослик', '2020-05-17', 6, 6),
+('Чита', '2011-07-11', 2, 6),
+('Элиос', '2013-05-19', 2, 6),
+('Лунтик', '2018-07-22', 2, 6);
 ```
 >Создаем таблицу Хомяки и наполняем её
 ```sql
@@ -249,12 +249,12 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 ) ;
 
-INSERT INTO `hamsters` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Хомик', '2022-12-18', 5, 3),
-(2, 'Ириска', '2020-08-14', 5, 3),
-(3, 'Бубус', '2021-11-16', 2, 3),
-(4, 'Баззи', '2022-04-18', 2, 3),
-(5, 'Жоржик', '2021-12-22', 8, 3);
+INSERT INTO `hamsters` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Хомик', '2022-12-18', 5, 3),
+('Ириска', '2020-08-14', 5, 3),
+('Бубус', '2021-11-16', 2, 3),
+('Баззи', '2022-04-18', 2, 3),
+('Жоржик', '2021-12-22', 8, 3);
 ```
 
 >Создаем таблицу Лошади и наполняем её
@@ -269,12 +269,12 @@ PRIMARY KEY(id),
 FOREIGN KEY (animal_types_id) REFERENCES animals_types (id) on DELETE CASCADE on UPDATE CASCADE
 ) ;
 
-INSERT INTO `horses` (`id`, `name`, `Birthday`, `Color`, `animal_types_id`) VALUES
-(1, 'Ярость', '2000-07-18', 5, 4),
-(2, 'Рысак', '2018-01-18', 6, 4),
-(3, 'Лиса', '2010-10-06', 2, 4),
-(4, 'Коршун', '2014-04-12', 3, 4),
-(5, 'Тигрица', '2021-02-12', 8, 4);
+INSERT INTO `horses` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES
+('Ярость', '2000-07-18', 5, 4),
+('Рысак', '2018-01-18', 6, 4),
+('Лиса', '2010-10-06', 2, 4),
+('Коршун', '2014-04-12', 3, 4),
+('Тигрица', '2021-02-12', 8, 4);
 ```
 
 ***11***. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
