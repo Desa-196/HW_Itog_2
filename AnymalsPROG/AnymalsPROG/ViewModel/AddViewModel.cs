@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,8 +12,10 @@ namespace AnymalsPROG.ViewModel
 {
     internal class AddViewModel :  INotifyPropertyChanged
     {
+        IDBConnection dBConnection;
 
         public Dictionary<int, string> animalClesses { get; set; }
+        public Dictionary<int, string> animalType { get; set; }
 
         private KeyValuePair<int, string> selectedClass;
         public KeyValuePair<int, string> SelectedClass 
@@ -21,7 +24,21 @@ namespace AnymalsPROG.ViewModel
             set 
             { 
                 selectedClass = value;
+                animalType = dBConnection.getAllAnimalTypes(selectedClass.Key);
+                OnPropertyChanged("animalType");
                 OnPropertyChanged("SelectedClass");
+            }
+        
+        }
+
+        private KeyValuePair<int, string> selectedType;
+        public KeyValuePair<int, string> SelectedType 
+        {
+            get { return selectedType; }
+            set 
+            {
+                selectedType = value;
+                OnPropertyChanged("SelectedType");
             }
         
         }
@@ -29,7 +46,7 @@ namespace AnymalsPROG.ViewModel
 
         public AddViewModel() 
         {
-            IDBConnection dBConnection = DBMySQLConnection.getInstance();
+            dBConnection = DBMySQLConnection.getInstance();
             animalClesses = dBConnection.getAllAnimalClasses();
         }
 

@@ -105,5 +105,32 @@ namespace AnymalsPROG.DB
             return AnimalClassesDictionary;
         }
 
+        public Dictionary<int, string> getAllAnimalTypes(int animalClass)
+        {
+            Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"SELECT * FROM human_friends.animals_types where animal_classes_id = {animalClass}";
+
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return AnimalClassesDictionary;
+        }
+
     }
 }
