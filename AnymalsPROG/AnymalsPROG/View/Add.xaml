@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AnymalsPROG.View"
         xmlns:dc="clr-namespace:AnymalsPROG.ViewModel"
         mc:Ignorable="d"
-        Title="Добавление животного" Height="350" Width="400">
+        Title="Добавление животного" Height="324" Width="400">
     <Window.DataContext>
         <dc:AddViewModel/>
     </Window.DataContext>
@@ -16,22 +16,28 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Класс:"/>
-        <TextBlock Grid.Row="1" Text="Тип:"/>
-        <TextBlock Grid.Row="2" Text="Имя:"/>
-        <TextBlock Grid.Row="3" Text="Дата рождения:"/>
-        <TextBlock Grid.Row="4" Text="Цвет:"/>
+        <TextBlock Text="Класс:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="Тип:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="Имя:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="Дата рождения:" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Text="Цвет:" VerticalAlignment="Center"/>
 
-        <ComboBox Name="SelectClass" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding animalClesses}" SelectedValue="{Binding SelectedClass}"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding animalType}">
+        <ComboBox Name="SelectClass" Height="30" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding animalClesses}" SelectedValue="{Binding SelectedClass}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox Grid.Row="1" Height="30" Grid.Column="1" ItemsSource="{Binding animalType}" SelectedValue="{Binding SelectedType}">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
                     <Setter Property="IsEnabled" Value="True"/>
@@ -42,9 +48,25 @@
                     </Style.Triggers>
                 </Style>
             </ComboBox.Style>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
-        <DatePicker Grid.Row="3" Grid.Column="1"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ColorList}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="30" Text="{Binding Name}"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Height="30" SelectedDate="{Binding Birthday}"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Height="30" ItemsSource="{Binding ColorList}" SelectedValue="{Binding SelectedColor}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Margin="5" Width="100" Height="30" Command="{Binding Create}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">Создать</Button>
+            <Button Margin="5" Width="100" Height="30" Command="{Binding Close}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">Отмена</Button>
+        </StackPanel>
     </Grid>
 </Window>

@@ -132,5 +132,86 @@ namespace AnymalsPROG.DB
             return AnimalClassesDictionary;
         }
 
+        /// <summary>
+        /// Получения справочника цветов
+        /// </summary>
+        /// <returns>Dictionary<int, string></returns>
+        public Dictionary<int, string> getAllAnimalColors()
+        {
+            Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT * FROM human_friends.colors;";
+
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AnimalClassesDictionary.Add((int)reader["id"], reader["color"].ToString());
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return AnimalClassesDictionary;
+        }
+
+        /// <summary>
+        /// Добавляет животное в таблицу
+        /// </summary>
+        /// <returns></returns>
+        public void createAnimal(int type, string name, DateTime birthday, int color)
+        {
+
+            string tableName = string.Empty;
+
+            switch (type) 
+            {
+                case (int)TypeAnimal.Cat:
+                    tableName = "cats";
+                    break;
+                case (int)TypeAnimal.Dog:
+                    tableName = "dogs";
+                    break;
+                case (int)TypeAnimal.Hamster:
+                    tableName = "hamsters";
+                    break;
+                case (int)TypeAnimal.Horse:
+                    tableName = "horses";
+                    break;
+                case (int)TypeAnimal.Camel:
+                    tableName = "camels";
+                    break;
+                case (int)TypeAnimal.Donkey:
+                    tableName = "donkeys";
+                    break;
+            }
+
+            Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"INSERT INTO `{tableName}` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES ('{name}', '{birthday.ToString("yyyy-MM-dd")}', {color}, {type})";
+
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+       
+                }
+
+                connection.Close();
+            }
+
+        }
+
     }
 }

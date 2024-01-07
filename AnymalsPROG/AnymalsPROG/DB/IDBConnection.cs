@@ -12,6 +12,8 @@ namespace AnymalsPROG.DB
         void setConnectionString(string connectionString);
         List<Animals> getAllAnimals();
         Dictionary<int, string> getAllAnimalClasses();
+        Dictionary<int, string> getAllAnimalColors();
         Dictionary<int, string> getAllAnimalTypes(int animalClass);
+        void createAnimal(int type, string name, DateTime birthday, int color);
     }
 }
