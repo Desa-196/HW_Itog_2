@@ -121,7 +121,7 @@
     </Compile>
     <Compile Include="DB\AnimalDBMaker.cs" />
     <Compile Include="DB\IDBConnection.cs" />
-    <Compile Include="DB\MySQLConnection.cs" />
+    <Compile Include="DB\DBMySQLConnection.cs" />
     <Compile Include="DB\TypeAnimal.cs" />
     <Compile Include="Model\Animals.cs" />
     <Compile Include="Model\Camel.cs" />

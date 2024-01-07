@@ -7,6 +7,9 @@
         xmlns:dc="clr-namespace:AnymalsPROG.ViewModel"
         mc:Ignorable="d"
         Title="Добавление животного" Height="350" Width="400">
+    <Window.DataContext>
+        <dc:AddViewModel/>
+    </Window.DataContext>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -27,8 +30,19 @@
         <TextBlock Grid.Row="3" Text="Дата рождения:"/>
         <TextBlock Grid.Row="4" Text="Цвет:"/>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding ClassList}"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TypeList}"/>
+        <ComboBox Name="SelectClass" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding animalClesses}" SelectedValue="{Binding SelectedClass}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TypeList}">
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=SelectClass, Path=SelectedIndex}" Value="-1">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
         <DatePicker Grid.Row="3" Grid.Column="1"/>
         <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ColorList}"/>

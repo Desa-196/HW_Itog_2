@@ -11,9 +11,22 @@ using System.Xml.Linq;
 
 namespace AnymalsPROG.DB
 {
-    internal class MySQLConnection : IDBConnection
+    internal class DBMySQLConnection : IDBConnection
     {
-       private string connectionString;
+        private string connectionString;
+
+        private static DBMySQLConnection instance;
+
+        private DBMySQLConnection()
+        { }
+
+        public static DBMySQLConnection getInstance()
+        {
+            if (instance == null)
+                instance = new DBMySQLConnection();
+            return instance;
+        }
+
 
         public void setConnectionString(string connectionString)
         {
@@ -54,8 +67,6 @@ namespace AnymalsPROG.DB
                     {
                         while (reader.Read())
                         {
-                            //AninalsList.Add(new Camel(reader["id"], reader["name"], reader["birthday"], reader["color"], null));
-                           
                             AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["animal_types_id"]));
                         }
                     }
@@ -66,5 +77,33 @@ namespace AnymalsPROG.DB
 
             return AninalsList;
         }
+
+        public Dictionary<int, string> getAllAnimalClasses()
+        {
+            Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT * FROM human_friends.animal_classes;";
+
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return AnimalClassesDictionary;
+        }
+
     }
 }
