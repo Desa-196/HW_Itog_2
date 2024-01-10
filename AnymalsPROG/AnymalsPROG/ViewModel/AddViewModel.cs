@@ -16,6 +16,8 @@ namespace AnymalsPROG.ViewModel
     {
         IDBConnection dBConnection;
 
+        public MainViewModel mainViewModel;
+
         public Dictionary<int, string> animalClesses { get; set; }
         public Dictionary<int, string> animalType { get; set; }
         public Dictionary<int, string> ColorList { get; set; }
@@ -90,6 +92,7 @@ namespace AnymalsPROG.ViewModel
                 return new MyCommand((obj) =>
                 {
                     dBConnection.createAnimal(SelectedType.Key, Name, Birthday, SelectedColor.Key);
+                    mainViewModel.Update.Execute(null);
                     Close.Execute(obj);
                 },
                 (obj) =>

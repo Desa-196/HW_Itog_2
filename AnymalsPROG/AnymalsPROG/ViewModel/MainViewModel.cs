@@ -40,6 +40,7 @@ namespace AnymalsPROG.ViewModel
                 {
 
                     var newWindow = new Add();
+                    (newWindow.DataContext as AddViewModel).mainViewModel = this;
                     newWindow.ShowDialog();
                     newWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
                 },

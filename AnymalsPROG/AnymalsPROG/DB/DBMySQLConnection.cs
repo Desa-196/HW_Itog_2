@@ -75,6 +75,7 @@ namespace AnymalsPROG.DB
                 connection.Close();
             }
 
+
             return AninalsList;
         }
 
