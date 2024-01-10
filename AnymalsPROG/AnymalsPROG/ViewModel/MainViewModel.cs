@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AnymalsPROG.ViewModel
 {
@@ -55,9 +56,13 @@ namespace AnymalsPROG.ViewModel
             {
                 return new MyCommand((obj) =>
                 {
-                    dBConnection.deleteAnimal(obj as Animals);
-                    AnimalsList = dBConnection.getAllAnimals();
-                    OnPropertyChanged("AnimalsList");
+                    Animals animal = (Animals)obj;
+                    if (MessageBox.Show($"Вы уверены что хотите удалить {animal.name}?", "Удаление.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        dBConnection.deleteAnimal(obj as Animals);
+                        AnimalsList = dBConnection.getAllAnimals();
+                        OnPropertyChanged("AnimalsList");
+                    }
                 },
                 (obj) =>
                 {
