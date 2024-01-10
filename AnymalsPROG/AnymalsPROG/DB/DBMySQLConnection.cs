@@ -213,5 +213,52 @@ namespace AnymalsPROG.DB
 
         }
 
+        /// <summary>
+        /// Удаляет животное из таблицы
+        /// </summary>
+        /// <returns></returns>
+        public void deleteAnimal(Animals animal)
+        {
+            string tableName = string.Empty;
+
+            switch (animal.animalType)
+            {
+                case (int)TypeAnimal.Cat:
+                    tableName = "cats";
+                    break;
+                case (int)TypeAnimal.Dog:
+                    tableName = "dogs";
+                    break;
+                case (int)TypeAnimal.Hamster:
+                    tableName = "hamsters";
+                    break;
+                case (int)TypeAnimal.Horse:
+                    tableName = "horses";
+                    break;
+                case (int)TypeAnimal.Camel:
+                    tableName = "camels";
+                    break;
+                case (int)TypeAnimal.Donkey:
+                    tableName = "donkeys";
+                    break;
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = $"DELETE FROM {tableName} WHERE id = {animal.id}";
+
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+
+                }
+
+                connection.Close();
+            }
+
+        }
+
     }
 }

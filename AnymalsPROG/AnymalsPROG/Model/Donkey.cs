@@ -11,6 +11,7 @@ namespace AnymalsPROG.Model
         public Donkey(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) 
         {
             img = "/Img/donkey.png";
+            animalType = 6;
         }
     }
 }

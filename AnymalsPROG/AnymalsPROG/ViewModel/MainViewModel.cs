@@ -4,6 +4,7 @@ using AnymalsPROG.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,6 +14,8 @@ namespace AnymalsPROG.ViewModel
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
+
+        private IDBConnection dBConnection;
 
         private List<Animals> _animalsList = new List<Animals>();
         public List<Animals> AnimalsList
@@ -46,9 +49,42 @@ namespace AnymalsPROG.ViewModel
             }
         }
 
+        public MyCommand Delete
+        {
+            get
+            {
+                return new MyCommand((obj) =>
+                {
+                    dBConnection.deleteAnimal(obj as Animals);
+                    AnimalsList = dBConnection.getAllAnimals();
+                    OnPropertyChanged("AnimalsList");
+                },
+                (obj) =>
+                {
+                    return true;
+                });
+            }
+        }
+
+        public MyCommand Update
+        {
+            get
+            {
+                return new MyCommand((obj) =>
+                {
+                    AnimalsList = dBConnection.getAllAnimals();
+                    OnPropertyChanged("AnimalsList");
+                },
+                (obj) =>
+                {
+                    return true;
+                });
+            }
+        }
+
         public MainViewModel()
         {
-            IDBConnection dBConnection = DBMySQLConnection.getInstance();
+            dBConnection = DBMySQLConnection.getInstance();
             dBConnection.setConnectionString("server=localhost;database=human_friends;uid=animals_user;password=p-Ze9ho8EC;");
             AnimalsList = dBConnection.getAllAnimals();
 

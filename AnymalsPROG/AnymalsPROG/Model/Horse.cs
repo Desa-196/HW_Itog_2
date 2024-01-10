@@ -11,6 +11,7 @@ namespace AnymalsPROG.Model
         public Horse(int id, string name, DateTime birthday, string color, List<Command> command) : base(id, name, birthday, color, command) 
         {
             img = "/Img/horse.png";
+            animalType = 4;
         }
     }
 }

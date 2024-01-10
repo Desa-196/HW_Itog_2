@@ -9,6 +9,7 @@ namespace AnymalsPROG.Model
     internal abstract class Animals
     {
         public int id { get; set; }
+        public int animalType { get; set; }
         public string name { get; set; }
         public DateTime birthday { get; set; }
         public string color {  get; set; }

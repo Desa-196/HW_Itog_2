@@ -15,5 +15,6 @@ namespace AnymalsPROG.DB
         Dictionary<int, string> getAllAnimalColors();
         Dictionary<int, string> getAllAnimalTypes(int animalClass);
         void createAnimal(int type, string name, DateTime birthday, int color);
+        void deleteAnimal(Animals animal);
     }
 }
