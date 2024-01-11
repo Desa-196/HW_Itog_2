@@ -33,15 +33,22 @@ namespace AnymalsPROG.DB
             this.connectionString = connectionString;
         }
 
+
+        /// <summary>
+        /// Возвращает список всех животных
+        /// </summary>
+        /// <returns></returns>
         public List<Animals> getAllAnimals()
         {
             List<Animals> AninalsList = new List<Animals>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
 
-                string sql = @"
+                    string sql = @"
 
                     select all_animals.id, all_animals.Birthday, all_animals.name, colors.color, all_animals.animal_types_id
                     from(
@@ -61,73 +68,104 @@ namespace AnymalsPROG.DB
                     left join animal_classes on animals_types.animal_classes_id = animal_classes.id;";
 
 
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["animal_types_id"]));
+                            while (reader.Read())
+                            {
+                                AninalsList.Add(AnimalDBMaker.getAnimal(int.Parse(reader["id"].ToString()), reader["name"].ToString(), DateTime.Parse(reader["birthday"].ToString()), reader["color"].ToString(), (TypeAnimal)reader["animal_types_id"]));
+                            }
                         }
                     }
+
+                    connection.Close();
+                }
+                catch 
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
                 }
 
-                connection.Close();
+  
             }
 
 
             return AninalsList;
         }
 
+        /// <summary>
+        /// Возвращает список всех классов животных
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, string> getAllAnimalClasses()
         {
             Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
-
-                string sql = "SELECT * FROM human_friends.animal_classes;";
-
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                try
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+
+                    string sql = "SELECT * FROM human_friends.animal_classes;";
+
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                            while (reader.Read())
+                            {
+                                AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                            }
                         }
                     }
-                }
 
-                connection.Close();
+                    connection.Close();
+                }
+                catch
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
+                }
             }
 
             return AnimalClassesDictionary;
         }
 
+        /// <summary>
+        /// Возвращает список всех типов животных
+        /// </summary>
+        /// <param name="animalClass"></param>
+        /// <returns></returns>
         public Dictionary<int, string> getAllAnimalTypes(int animalClass)
         {
             Dictionary<int, string> AnimalClassesDictionary = new Dictionary<int, string>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
-
-                string sql = $"SELECT * FROM human_friends.animals_types where animal_classes_id = {animalClass}";
-
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                try
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+
+                    string sql = $"SELECT * FROM human_friends.animals_types where animal_classes_id = {animalClass}";
+
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                            while (reader.Read())
+                            {
+                                AnimalClassesDictionary.Add((int)reader["id"], reader["name"].ToString());
+                            }
                         }
                     }
+
+                    connection.Close();
+                }
+                catch
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
                 }
 
-                connection.Close();
             }
 
             return AnimalClassesDictionary;
@@ -143,22 +181,29 @@ namespace AnymalsPROG.DB
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
-
-                string sql = "SELECT * FROM human_friends.colors;";
-
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                try
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+
+                    string sql = "SELECT * FROM human_friends.colors;";
+
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            AnimalClassesDictionary.Add((int)reader["id"], reader["color"].ToString());
+                            while (reader.Read())
+                            {
+                                AnimalClassesDictionary.Add((int)reader["id"], reader["color"].ToString());
+                            }
                         }
                     }
-                }
 
-                connection.Close();
+                    connection.Close();
+                }
+                catch
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
+                }
             }
 
             return AnimalClassesDictionary;
@@ -199,17 +244,24 @@ namespace AnymalsPROG.DB
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
-
-                string sql = $"INSERT INTO `{tableName}` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES ('{name}', '{birthday.ToString("yyyy-MM-dd")}', {color}, {type})";
-
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                try
                 {
-                    command.ExecuteNonQuery();
-       
-                }
+                    connection.Open();
 
-                connection.Close();
+                    string sql = $"INSERT INTO `{tableName}` (`name`, `Birthday`, `Color`, `animal_types_id`) VALUES ('{name}', '{birthday.ToString("yyyy-MM-dd")}', {color}, {type})";
+
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+
+                    connection.Close();
+                }
+                catch
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
+                }
             }
 
         }
@@ -246,17 +298,24 @@ namespace AnymalsPROG.DB
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
-
-                string sql = $"DELETE FROM {tableName} WHERE id = {animal.id}";
-
-                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                try
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
 
+                    string sql = $"DELETE FROM {tableName} WHERE id = {animal.id}";
+
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
+                    {
+                        command.ExecuteNonQuery();
+
+                    }
+
+                    connection.Close();
                 }
-
-                connection.Close();
+                catch
+                {
+                    System.Windows.MessageBox.Show("Ошибка подключения к базе данных, проверьте параметры подключения.");
+                }
             }
 
         }
